@@ -416,6 +416,7 @@
         }
 
         .modal-content {
+            position: relative;
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
@@ -426,18 +427,24 @@
         }
 
         .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            font-size: 20px;
+            z-index: 1000;
         }
 
-            .close:hover,
-            .close:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
+            .close:hover {
+                background: #f0f0f0;
             }
 
         .modal-image {
@@ -463,6 +470,38 @@
             width: 100%;
             padding: 10px;
             font-size: 16px;
+        }
+
+        .image-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .nav-button:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+        #prevImage {
+            left: 10px;
+        }
+
+        #nextImage {
+            right: 10px;
         }
     </style>
 </head>
@@ -539,6 +578,9 @@
     <div class="product-grid">
         <a href="#" class="product-card">
             <img src="Fabrication/k1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
             <div class="product-info">
                 <h2 class="product-title">Kitchen Trollies</h2>
                 <div class="product-price">
@@ -551,6 +593,9 @@
 
         <a href="#" class="product-card">
             <img src="Fabrication/k2.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
             <div class="product-info">
                 <h2 class="product-title">Door</h2>
                 <div class="product-price">
@@ -563,6 +608,9 @@
 
         <a href="#" class="product-card">
             <img src="Fabrication/k3.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
             <div class="product-info">
                 <h2 class="product-title">Main door</h2>
                 <div class="product-price">
@@ -575,6 +623,9 @@
 
         <a href="#" class="product-card">
             <img src="Fabrication/FiberProduct.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
             <div class="product-info">
                 <h2 class="product-title">Fiber Prodoct</h2>
                 <div class="product-price">
@@ -590,7 +641,11 @@
         <div id="productModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
+                <div class="image-container">
+                    <button id="prevImage" class="nav-button">&lt;</button>
+                    <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
+                    <button id="nextImage" class="nav-button">&gt;</button>
+                </div>
                 <h2 id="modalTitle"></h2>
                 <div id="modalPrice"></div>
                 <button id="modalAddToCart" class="add-to-cart">Add to Cart</button>
@@ -610,6 +665,8 @@
                 const modalPrice = document.getElementById('modalPrice');
                 const modalAddToCart = document.getElementById('modalAddToCart');
                 const cartIcon = document.getElementById('cartIcon');
+                const prevImageBtn = document.getElementById('prevImage');
+                const nextImageBtn = document.getElementById('nextImage');
 
                 // Menu functionality
                 menuBtn.addEventListener('click', () => {
@@ -649,15 +706,19 @@
                     }
                 });
 
-                // Modal functionality
-                function openModal(image, title, salePrice, originalPrice) {
-                    modalImage.src = image;
-                    modalImage.alt = title;
+                // Modal functionality with image slider
+                let currentImages = [];
+                let currentImageIndex = 0;
+
+                function openModal(images, title, salePrice, originalPrice) {
+                    currentImages = images;
+                    currentImageIndex = 0;
+                    updateModalImage();
                     modalTitle.textContent = title;
                     modalPrice.innerHTML = `
-                                    <span class="sale-price">${salePrice}</span>
-                                    <span class="original-price">${originalPrice}</span>
-                                `;
+                    <span class="sale-price">${salePrice}</span>
+                    <span class="original-price">${originalPrice}</span>
+                `;
                     modal.style.display = 'block';
                     document.body.style.overflow = 'hidden';
                 }
@@ -667,6 +728,21 @@
                     document.body.style.overflow = '';
                 }
 
+                function updateModalImage() {
+                    modalImage.src = currentImages[currentImageIndex];
+                    modalImage.alt = `Product Image ${currentImageIndex + 1}`;
+                }
+
+                function showPreviousImage() {
+                    currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                    updateModalImage();
+                }
+
+                function showNextImage() {
+                    currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+                    updateModalImage();
+                }
+
                 modalClose.addEventListener('click', closeModal);
                 window.addEventListener('click', (event) => {
                     if (event.target === modal) {
@@ -674,16 +750,20 @@
                     }
                 });
 
+                // Add navigation button event listeners
+                prevImageBtn.addEventListener('click', showPreviousImage);
+                nextImageBtn.addEventListener('click', showNextImage);
+
                 // Add click event listeners to product cards
                 const productCards = document.querySelectorAll('.product-card');
                 productCards.forEach(card => {
                     card.addEventListener('click', (e) => {
                         e.preventDefault();
-                        const image = card.querySelector('.product-image').src;
+                        const images = Array.from(card.querySelectorAll('.product-image')).map(img => img.src);
                         const title = card.querySelector('.product-title').textContent;
                         const salePrice = card.querySelector('.sale-price').textContent;
                         const originalPrice = card.querySelector('.original-price').textContent;
-                        openModal(image, title, salePrice, originalPrice);
+                        openModal(images, title, salePrice, originalPrice);
                     });
                 });
 

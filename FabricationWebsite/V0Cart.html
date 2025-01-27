@@ -184,6 +184,72 @@
                 padding-top: 10px;
             }
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #prevImage {
+            left: 10px;
+        }
+
+        #nextImage {
+            right: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -207,44 +273,117 @@
         </div>
     </div>
 
+
+
+
+
+    <!-- Add this right before the closing </body> tag -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="image-container">
+                <button id="prevImage" class="nav-button">&lt;</button>
+                <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
+                <button id="nextImage" class="nav-button">&gt;</button>
+            </div>
+            <h2 id="modalTitle"></h2>
+            <div id="modalPrice"></div>
+        </div>
+    </div>
+
+
     <script>
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartItemsContainer = document.querySelector('.cart-items');
         const cartTotalAmount = document.getElementById('cart-total-amount');
+        const modal = document.getElementById('productModal');
+        const modalClose = modal.querySelector('.close');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const prevImageBtn = document.getElementById('prevImage');
+        const nextImageBtn = document.getElementById('nextImage');
+
+        let currentImages = [];
+        let currentImageIndex = 0;
 
         function updateCartDisplay() {
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `
-                            <div class="empty-cart">
-                                <p>Your cart is empty</p>
-                            </div>
-                        `;
+                <div class="empty-cart">
+                    <p>Your cart is empty</p>
+                </div>
+            `;
                 cartTotalAmount.textContent = '₹0.00';
                 return;
             }
 
             cartItemsContainer.innerHTML = cart.map((item, index) => `
-                        <div class="cart-item">
-                            <img src="${item.image}" alt="${item.title}" class="item-image">
-                            <div class="item-details">
-                                <h3>${item.title}</h3>
-                                <div class="item-specs">
-                                    <div>Material: ${item.material || 'Full Cover'}</div>
-                                    <div>Color: ${item.color || 'Black'}</div>
-                                </div>
-                            </div>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">−</button>
-                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this.value)">
-                                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                            </div>
-                            <div class="price">₹${(parseFloat(item.price.replace('₹', '')) * item.quantity).toFixed(2)}</div>
-                            <button class="delete-btn" onclick="removeItem(${index})">🗑️</button>
-                        </div>
-                    `).join('');
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.title}" class="item-image" onclick="openModal(${index})">
+                <div class="item-details">
+                    <h3>${item.title}</h3>
+                    <div class="item-specs">
+                        <div>Material: ${item.material || 'Full Cover'}</div>
+                        <div>Color: ${item.color || 'Black'}</div>
+                    </div>
+                </div>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">−</button>
+                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this.value)">
+                    <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                </div>
+                <div class="price">₹${(parseFloat(item.price.replace('₹', '')) * item.quantity).toFixed(2)}</div>
+                <button class="delete-btn" onclick="removeItem(${index})">🗑️</button>
+            </div>
+        `).join('');
 
             updateTotal();
         }
+
+        function openModal(index) {
+            const item = cart[index];
+            currentImages = [item.image]; // Add more images if available
+            currentImageIndex = 0;
+            updateModalImage();
+            modalTitle.textContent = item.title;
+            modalPrice.innerHTML = `
+            <span class="sale-price">${item.price}</span>
+            <span class="original-price">${item.originalPrice}</span>
+        `;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function updateModalImage() {
+            modalImage.src = currentImages[currentImageIndex];
+            modalImage.alt = `Product Image ${currentImageIndex + 1}`;
+        }
+
+        function showPreviousImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+            updateModalImage();
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+            updateModalImage();
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        prevImageBtn.addEventListener('click', showPreviousImage);
+        nextImageBtn.addEventListener('click', showNextImage);
 
         function updateQuantity(index, change) {
             const newQuantity = (cart[index].quantity || 1) + change;
