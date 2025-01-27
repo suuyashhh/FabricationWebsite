@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sprig Store</title>
+    <title>Jb-Fabrication Store</title>
+
+    <!-- Sweet Alert -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600&display=swap" rel="stylesheet" />
+
     <style>
         * {
             margin: 0;
@@ -37,13 +43,23 @@
 
         /* Header */
         .header {
-            padding: 15px;
+            background: #ffffff; /* White background */
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Increased z-index to ensure it stays on top */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%; /* Ensure it spans the full width */
+        }
+
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 1400px;
+            margin: 0 auto;
         }
+
 
         .menu-btn {
             background: none;
@@ -80,11 +96,12 @@
             gap: 15px;
         }
 
+
             .header-icons img {
-                width: 24px;
-                height: 24px;
-                cursor: pointer;
+                width: 20px; /* Example style */
+                height: 20px; /* Example style */
             }
+
 
         /* Mobile Menu */
         .mobile-menu {
@@ -174,6 +191,16 @@
             }
         }
 
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
         /* Filter Bar */
         .filter-bar {
             display: flex;
@@ -183,7 +210,7 @@
             background: #f8f9fa;
         }
 
-        .filter-btn {
+        .filter-btnB {
             display: flex;
             align-items: center;
             gap: 5px;
@@ -278,6 +305,27 @@
                 background-color: #005347;
             }
 
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid #006B5E;
+            border-radius: 4px;
+            background: none;
+            color: #006B5E;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .filter-btn.active {
+                background: #006B5E;
+                color: white;
+            }
+
+            .filter-btn:hover {
+                background: #006B5E;
+                color: white;
+            }
+
         /* Overlay */
         .overlay {
             position: fixed;
@@ -298,6 +346,10 @@
 
         /* Responsive Styles */
         @media (max-width: 768px) {
+            .product-grid-section {
+                padding: 24px 16px;
+            }
+
             .nav-menu {
                 display: none;
             }
@@ -507,37 +559,26 @@
 </head>
 <body>
     <header class="header">
-        <button class="menu-btn">☰</button>
-        <img src="Fabrication/Logo2.png" alt="Sprig" class="logo">
+        <div class="header-container">
+            <button class="menu-btn">☰</button>
+            <img src="Fabrication/Logo2.png" alt="Sprig" class="logo">
 
-        <nav class="nav-menu">
-            <a href="#">HOME</a>
-            <a href="#">STORE</a>
-            <a href="#">CATEGORY</a>
-            <a href="#">WARRANTY</a>
-            <a href="#">FAQ</a>
-            <a href="#">ABOUT US</a>
-            <a href="#">PARTNER WITH US</a>
-        </nav>
+            <nav class="nav-menu">
+                <a href="#">HOME</a>
+                <a href="#">STORE</a>
+                <a href="#">CATEGORY</a>
+                <a href="#">WARRANTY</a>
+                <a href="#">FAQ</a>
+                <a href="#">ABOUT US</a>
+                <a href="#">PARTNER WITH US</a>
+            </nav>
 
-        <div class="header-icons">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E" alt="Search">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" alt="Account">
-            <img id="cartIcon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'/%3E%3C/svg%3E" alt="Cart" data-count="0" class="has-items">
+            <div class="header-icons">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E" alt="Search">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" alt="Account">
+                <img id="cartIcon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'/%3E%3C/svg%3E" alt="Cart" data-count="0" class="has-items">
+            </div>
         </div>
-        <!--<div class="header-icons">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E" alt="Search">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" alt="Account">-->
-        <!--<div class="header-icons">
-            <img data-count="3" class="has-items" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'/%3E%3C/svg%3E" alt="Cart">
-        </div>-->
-        <!--<div class="header-icons">
-            <img src="cart.png" alt="Cart" data-count="3" class="has-items">
-        </div>-->
-        <!--<div class="header-icons">
-            <img src="cart.png" alt="Cart" data-count="3" class="has-items">
-        </div>-->
-        <!--</div>-->
     </header>
 
     <div class="mobile-menu">
@@ -561,14 +602,21 @@
 
     <div class="overlay"></div>
 
-    <section class="hero">
+    <!--<section class="hero">
         <h1>Available Now</h1>
         <p>Your ultimate solution for Fast, Safe charging of all Devices!</p>
         <img src="Fabrication/k1.jpg" alt="Charging Device">
-    </section>
+    </section>-->
+
+    <div class="filter-buttons">
+        <button class="filter-btn active">Kitchen Trollies</button>
+        <button class="filter-btn">Main Doors</button>
+        <button class="filter-btn">Primium Door</button>
+        <button class="filter-btn">Fiber Products</button>
+    </div>
 
     <div class="filter-bar">
-        <button class="filter-btn">
+        <button class="filter-btnB">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cline x1='4' y1='21' x2='4' y2='14'/%3E%3Cline x1='4' y1='10' x2='4' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12' y2='3'/%3E%3Cline x1='20' y1='21' x2='20' y2='16'/%3E%3Cline x1='20' y1='12' x2='20' y2='3'/%3E%3Cline x1='1' y1='14' x2='7' y2='14'/%3E%3Cline x1='9' y1='8' x2='15' y2='8'/%3E%3Cline x1='17' y1='16' x2='23' y2='16'/%3E%3C/svg%3E" alt="Filter">
             Filter and sort
         </button>
@@ -635,190 +683,41 @@
                 <button class="add-to-cart">Add to Cart</button>
             </div>
         </a>
+    </div>
 
 
 
-        <div id="productModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="image-container">
-                    <button id="prevImage" class="nav-button">&lt;</button>
-                    <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
-                    <button id="nextImage" class="nav-button">&gt;</button>
-                </div>
-                <h2 id="modalTitle"></h2>
-                <div id="modalPrice"></div>
-                <button id="modalAddToCart" class="add-to-cart">Add to Cart</button>
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="image-container">
+                <button id="prevImage" class="nav-button">&lt;</button>
+                <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
+                <button id="nextImage" class="nav-button">&gt;</button>
             </div>
+            <h2 id="modalTitle"></h2>
+            <div id="modalPrice"></div>
+            <button id="modalAddToCart" class="add-to-cart">Add to Cart</button>
         </div>
+    </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const menuBtn = document.querySelector('.menu-btn');
-                const closeBtn = document.querySelector('.menu-close');
-                const mobileMenu = document.querySelector('.mobile-menu');
-                const overlay = document.querySelector('.overlay');
-                const modal = document.getElementById('productModal');
-                const modalClose = modal.querySelector('.close');
-                const modalImage = document.getElementById('modalImage');
-                const modalTitle = document.getElementById('modalTitle');
-                const modalPrice = document.getElementById('modalPrice');
-                const modalAddToCart = document.getElementById('modalAddToCart');
-                const cartIcon = document.getElementById('cartIcon');
-                const prevImageBtn = document.getElementById('prevImage');
-                const nextImageBtn = document.getElementById('nextImage');
-
-                // Menu functionality
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.add('active');
-                    overlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-
-                function closeMenu() {
-                    mobileMenu.classList.remove('active');
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-
-                closeBtn.addEventListener('click', closeMenu);
-                overlay.addEventListener('click', closeMenu);
-
-                // Touch events for mobile menu
-                let touchStartX = 0;
-                mobileMenu.addEventListener('touchstart', e => {
-                    touchStartX = e.touches[0].clientX;
-                });
-
-                mobileMenu.addEventListener('touchmove', e => {
-                    const touchX = e.touches[0].clientX;
-                    const diff = touchStartX - touchX;
-
-                    if (diff > 50) {
-                        closeMenu();
-                    }
-                });
-
-                // Responsive menu
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth > 768) {
-                        closeMenu();
-                    }
-                });
-
-                // Modal functionality with image slider
-                let currentImages = [];
-                let currentImageIndex = 0;
-
-                function openModal(images, title, salePrice, originalPrice) {
-                    currentImages = images;
-                    currentImageIndex = 0;
-                    updateModalImage();
-                    modalTitle.textContent = title;
-                    modalPrice.innerHTML = `
-                    <span class="sale-price">${salePrice}</span>
-                    <span class="original-price">${originalPrice}</span>
-                `;
-                    modal.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                }
-
-                function closeModal() {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = '';
-                }
-
-                function updateModalImage() {
-                    modalImage.src = currentImages[currentImageIndex];
-                    modalImage.alt = `Product Image ${currentImageIndex + 1}`;
-                }
-
-                function showPreviousImage() {
-                    currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
-                    updateModalImage();
-                }
-
-                function showNextImage() {
-                    currentImageIndex = (currentImageIndex + 1) % currentImages.length;
-                    updateModalImage();
-                }
-
-                modalClose.addEventListener('click', closeModal);
-                window.addEventListener('click', (event) => {
-                    if (event.target === modal) {
-                        closeModal();
-                    }
-                });
-
-                // Add navigation button event listeners
-                prevImageBtn.addEventListener('click', showPreviousImage);
-                nextImageBtn.addEventListener('click', showNextImage);
-
-                // Add click event listeners to product cards
-                const productCards = document.querySelectorAll('.product-card');
-                productCards.forEach(card => {
-                    card.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const images = Array.from(card.querySelectorAll('.product-image')).map(img => img.src);
-                        const title = card.querySelector('.product-title').textContent;
-                        const salePrice = card.querySelector('.sale-price').textContent;
-                        const originalPrice = card.querySelector('.original-price').textContent;
-                        openModal(images, title, salePrice, originalPrice);
-                    });
-                });
-
-                // Add to Cart functionality
-                modalAddToCart.addEventListener('click', () => {
-                    const product = {
-                        image: modalImage.src,
-                        title: modalTitle.textContent,
-                        price: modalPrice.querySelector('.sale-price').textContent,
-                        originalPrice: modalPrice.querySelector('.original-price').textContent,
-                        quantity: 1
-                    };
-
-                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    const existingProductIndex = cart.findIndex(item => item.title === product.title);
-
-                    if (existingProductIndex !== -1) {
-                        cart[existingProductIndex].quantity += 1;
-                    } else {
-                        cart.push(product);
-                    }
-
-                    localStorage.setItem('cart', JSON.stringify(cart));
-
-                    updateCartIcon();
-                    closeModal();
-                    alert('Product added to cart successfully!');
-                });
-
-                // Cart icon click event
-                cartIcon.addEventListener('click', () => {
-                    window.location.href = 'V0Cart.html';
-                });
-
-                // Update cart icon
-                function updateCartIcon() {
-                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-                    cartIcon.setAttribute('data-count', cartCount);
-                    cartIcon.classList.toggle('has-items', cartCount > 0);
-                }
-
-                // Initialize cart icon
-                updateCartIcon();
-            });
-        </script>
-
-
-
-        <script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
             const menuBtn = document.querySelector('.menu-btn');
             const closeBtn = document.querySelector('.menu-close');
             const mobileMenu = document.querySelector('.mobile-menu');
             const overlay = document.querySelector('.overlay');
+            const modal = document.getElementById('productModal');
+            const modalClose = modal.querySelector('.close');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalPrice = document.getElementById('modalPrice');
+            const modalAddToCart = document.getElementById('modalAddToCart');
+            const cartIcon = document.getElementById('cartIcon');
+            const prevImageBtn = document.getElementById('prevImage');
+            const nextImageBtn = document.getElementById('nextImage');
 
+            // Menu functionality
             menuBtn.addEventListener('click', () => {
                 mobileMenu.classList.add('active');
                 overlay.classList.add('active');
@@ -834,6 +733,7 @@
             closeBtn.addEventListener('click', closeMenu);
             overlay.addEventListener('click', closeMenu);
 
+            // Touch events for mobile menu
             let touchStartX = 0;
             mobileMenu.addEventListener('touchstart', e => {
                 touchStartX = e.touches[0].clientX;
@@ -848,11 +748,225 @@
                 }
             });
 
+            // Responsive menu
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 768) {
                     closeMenu();
                 }
             });
-        </script>
+
+            // Modal functionality with image slider
+            let currentImages = [];
+            let currentImageIndex = 0;
+
+            function openModal(images, title, salePrice, originalPrice) {
+                currentImages = images;
+                currentImageIndex = 0;
+                updateModalImage();
+                modalTitle.textContent = title;
+                modalPrice.innerHTML = `
+                                    <span class="sale-price">${salePrice}</span>
+                                    <span class="original-price">${originalPrice}</span>
+                                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+
+            function updateModalImage() {
+                modalImage.src = currentImages[currentImageIndex];
+                modalImage.alt = `Product Image ${currentImageIndex + 1}`;
+            }
+
+            function showPreviousImage() {
+                currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                updateModalImage();
+            }
+
+            function showNextImage() {
+                currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+                updateModalImage();
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            prevImageBtn.addEventListener('click', showPreviousImage);
+            nextImageBtn.addEventListener('click', showNextImage);
+
+            // Image slider functionality
+            modalImage.addEventListener('mousemove', (e) => {
+                const rect = modalImage.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const width = rect.width;
+                const percentage = x / width;
+                currentImageIndex = Math.floor(percentage * currentImages.length);
+                updateModalImage();
+            });
+
+            modalImage.addEventListener('mouseleave', () => {
+                currentImageIndex = 0;
+                updateModalImage();
+            });
+
+            // Add click event listeners to product cards
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const images = Array.from(card.querySelectorAll('.product-image')).map(img => img.src);
+                    const title = card.querySelector('.product-title').textContent;
+                    const salePrice = card.querySelector('.sale-price').textContent;
+                    const originalPrice = card.querySelector('.original-price').textContent;
+                    openModal(images, title, salePrice, originalPrice);
+                });
+            });
+
+            // Add to Cart functionality (unchanged)
+            modalAddToCart.addEventListener('click', () => {
+                const product = {
+                    image: modalImage.src,
+                    title: modalTitle.textContent,
+                    price: modalPrice.querySelector('.sale-price').textContent,
+                    originalPrice: modalPrice.querySelector('.original-price').textContent,
+                    quantity: 1
+                };
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProductIndex = cart.findIndex(item => item.title === product.title);
+
+                if (existingProductIndex !== -1) {
+                    cart[existingProductIndex].quantity += 1;
+                } else {
+                    cart.push(product);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                updateCartIcon();
+                closeModal();
+                alert('Product added to cart successfully!');
+
+            });
+
+            // Cart icon click event
+            cartIcon.addEventListener('click', () => {
+                window.location.href = 'V0Cart.html';
+            });
+
+            // Update cart icon
+            function updateCartIcon() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+                cartIcon.setAttribute('data-count', cartCount);
+                cartIcon.classList.toggle('has-items', cartCount > 0);
+            }
+
+            // Initialize cart icon
+            updateCartIcon();
+        });
+    </script>
+
+
+
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const closeBtn = document.querySelector('.menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const overlay = document.querySelector('.overlay');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+
+        let touchStartX = 0;
+        mobileMenu.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        mobileMenu.addEventListener('touchmove', e => {
+            const touchX = e.touches[0].clientX;
+            const diff = touchStartX - touchX;
+
+            if (diff > 50) {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+    </script>
+
+    <script>
+        // Wait for the DOM to be fully loaded before executing the script
+        document.addEventListener("DOMContentLoaded", () => {
+            // Select the necessary elements
+            const filterBtnB = document.querySelector(".filter-btnB")
+            const filterButtons = document.querySelector(".filter-buttons")
+            const filterBtns = document.querySelectorAll(".filter-btn")
+
+            // Initially hide the filter buttons
+            filterButtons.style.display = "none"
+
+            // Toggle filter buttons visibility when filter-btnB is clicked
+            filterBtnB.addEventListener("click", () => {
+                if (filterButtons.style.display === "none") {
+                    filterButtons.style.display = "flex"
+                } else {
+                    filterButtons.style.display = "none"
+                }
+            })
+
+            // Add click event listeners to each filter button
+            filterBtns.forEach((btn) => {
+                btn.addEventListener("click", function () {
+                    // Remove 'active' class from all buttons
+                    filterBtns.forEach((b) => b.classList.remove("active"))
+                    // Add 'active' class to the clicked button
+                    this.classList.add("active")
+
+                    // Here you can add logic to filter products based on the selected category
+                    const category = this.textContent
+                    console.log(`Filtering products for category: ${category}`)
+                    // Implement your filtering logic here
+                })
+            })
+
+            // Function to update product count (example implementation)
+            function updateProductCount(count) {
+                const productCountSpan = document.querySelector(".filter-bar span")
+                if (productCountSpan) {
+                    productCountSpan.textContent = `${count} products`
+                }
+            }
+
+            // Example usage: Update product count (you would call this after filtering)
+            // updateProductCount(42);
+        })
+    </script>
+
 </body>
 </html>
