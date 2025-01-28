@@ -714,18 +714,15 @@
             <img src="Fabrication/Logo2.png" alt="Sprig" class="logo">
 
             <nav class="nav-menu">
-                <a href="#">HOME</a>
+                <a href="WebFabrication.html">HOME</a>
                 <a href="#">STORE</a>
-                <a href="#">CATEGORY</a>
-                <a href="#">WARRANTY</a>
                 <a href="#">FAQ</a>
-                <a href="#">ABOUT US</a>
-                <a href="#">PARTNER WITH US</a>
+                <a href="WebAbout.html">ABOUT US</a>
             </nav>
 
             <div class="header-icons">
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E" alt="Search">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" alt="Account">
+                <img id="Login" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" alt="Account">
                 <img id="cartIcon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'/%3E%3C/svg%3E" alt="Cart" data-count="0" class="has-items">
             </div>
         </div>
@@ -734,14 +731,10 @@
     <div class="mobile-menu">
         <button class="menu-close">×</button>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Store <span>→</span></a>
-            <a href="#">Category <span>→</span></a>
-            <a href="#">Warranty</a>
+            <a href="WebFabrication.html">HOME</a>
+            <a href="#">STORE</a>
             <a href="#">FAQ</a>
-            <a href="#">About Us</a>
-            <a href="#">Partner with Us</a>
-            <a href="#">My Account</a>
+            <a href="WebAbout.html">ABOUT US</a>
         </nav>
         <div class="social-links">
             <a href="#"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/%3E%3C/svg%3E" alt="Facebook"></a>
@@ -863,8 +856,8 @@
                 </h3>
                 <div class="footer-content">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="WebFabrication.html">Home</a></li>
+                        <li><a href="WebLogin.html">Login</a></li>
                         <li><a href="#">Category</a></li>
                         <li><a href="#">Developed by @Suyash Patil</a></li>
                     </ul>
@@ -873,18 +866,8 @@
 
             <div class="footer-section">
                 <h3>
-                    ABOUT US
-                    <button class="dropdown-toggle"></button>
-                </h3>
-                <div class="footer-content">
-                    <ul>
-                        <li><a href="#">My Profile</a></li>
-                        <li><a href="#">My Orders</a></li>
-                        <li><a href="#">Order Tracking</a></li>
-                        <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Compare</a></li>
-                    </ul>
-                </div>
+                    <a href="WebAbout.html"></a>ABOUT US
+                </h3>              
             </div>
 
             <div class="footer-section">
@@ -953,6 +936,7 @@
             const cartIcon = document.getElementById('cartIcon');
             const prevImageBtn = document.getElementById('prevImage');
             const nextImageBtn = document.getElementById('nextImage');
+            const Login = document.getElementById('Login');
 
             // Menu functionality
             menuBtn.addEventListener('click', () => {
@@ -1002,9 +986,9 @@
                 updateModalImage();
                 modalTitle.textContent = title;
                 modalPrice.innerHTML = `
-                                                <span class="sale-price">${salePrice}</span>
-                                                <span class="original-price">${originalPrice}</span>
-                                            `;
+                                            <span class="sale-price">${salePrice}</span>
+                                            <span class="original-price">${originalPrice}</span>
+                                        `;
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             }
@@ -1096,7 +1080,12 @@
 
             // Cart icon click event
             cartIcon.addEventListener('click', () => {
-                window.location.href = 'V0Cart.html';
+                window.location.href = 'WebCart.html';
+            });
+
+            // Login icon click event
+            Login.addEventListener('click', () => {
+                window.location.href = 'WebLogin.html';
             });
 
             // Update cart icon

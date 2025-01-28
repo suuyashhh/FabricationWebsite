@@ -67,7 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AboutUs.html" />
     <Content Include="Demo.html" />
+    <Content Include="WebFabrication.html" />
     <Content Include="Fabrication\Cardd.jpg" />
     <Content Include="Fabrication\door1.jpg" />
     <Content Include="Fabrication\door2.jpg" />
@@ -76,13 +78,20 @@
     <Content Include="Fabrication\k1.jpg" />
     <Content Include="Fabrication\k2.jpg" />
     <Content Include="Fabrication\k3.jpg" />
+    <Content Include="Fabrication\LoginFab.jpg" />
     <Content Include="Fabrication\Logo2.png" />
     <Content Include="Fabrication\Ui.png" />
+    <Content Include="Fabrication\harshal.jpg" />
+    <Content Include="Fabrication\jay.jpg" />
+    <Content Include="WebKitchen.html" />
     <Content Include="Login.html" />
     <Content Include="MainIndex.html" />
     <Content Include="V0.html" />
     <Content Include="V0Cart.html" />
     <Content Include="Web.config" />
+    <Content Include="WebCart.html" />
+    <Content Include="WebLogin.html" />
+    <Content Include="WebAbout.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

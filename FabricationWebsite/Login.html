@@ -9,42 +9,50 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             min-height: 100vh;
             display: flex;
-            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            padding: 20px;
         }
 
         .login-container {
-            width: 50%;
-            padding: 48px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
+        .illustration {
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+            .illustration img {
+                max-width: 100%;
+                height: auto;
+            }
+
         .login-form {
-            max-width: 420px;
-            width: 100%;
-            margin: 0 auto;
+            padding: 40px;
         }
 
         h1 {
-            font-size: 48px;
-            margin-bottom: 16px;
-            background: linear-gradient(90deg, #00C2FF 0%, #0066FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 32px;
+            font-size: 32px;
+            color: #1a1f36;
+            margin-bottom: 30px;
         }
 
         .form-group {
@@ -54,81 +62,64 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
+            color: #1a1f36;
             font-weight: 500;
         }
 
-        input[type="email"],
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 12px 16px;
-            border: 1px solid #ddd;
+            border: 1px solid #e5e7eb;
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
 
-            input[type="email"]:focus,
+            input[type="text"]:focus,
             input[type="password"]:focus {
                 outline: none;
-                border-color: #0066FF;
+                border-color: #2196f3;
             }
 
-        .remember-me {
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .remember-forgot {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 24px;
         }
 
-        .toggle {
-            position: relative;
-            width: 44px;
-            height: 24px;
-            margin-right: 8px;
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6b7280;
         }
 
-            .toggle input {
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ddd;
-            transition: 0.4s;
-            border-radius: 24px;
+        .forgot-password {
+            color: #2196f3;
+            text-decoration: none;
         }
 
-            .slider:before {
-                position: absolute;
-                content: "";
-                height: 20px;
-                width: 20px;
-                left: 2px;
-                bottom: 2px;
-                background-color: white;
-                transition: 0.4s;
-                border-radius: 50%;
-            }
-
-        input:checked + .slider {
-            background-color: #3B4B82;
-        }
-
-            input:checked + .slider:before {
-                transform: translateX(20px);
-            }
-
-        .sign-in-btn {
+        .sign-in-button {
             width: 100%;
-            padding: 14px;
-            background: #0066FF;
+            padding: 12px;
+            background: #2196f3;
             color: white;
             border: none;
             border-radius: 8px;
@@ -138,24 +129,44 @@
             transition: background-color 0.3s ease;
         }
 
-            .sign-in-btn:hover {
-                background: #0052CC;
+            .sign-in-button:hover {
+                background: #1976d2;
             }
 
-        .background-container {
-            width: 50%;
-            background-image: url('Fabrication/Ui.png');
-            background-size: cover;
-            background-position: center;
+        .terms {
+            margin-top: 24px;
+            color: #6b7280;
+            font-size: 14px;
+            text-align: center;
         }
 
-        @media (max-width: 768px) {
-            .background-container {
-                display: none;
+            .terms a {
+                color: #2196f3;
+                text-decoration: none;
             }
 
+        .signup {
+            margin-top: 24px;
+            text-align: center;
+            color: #6b7280;
+        }
+
+            .signup a {
+                color: #2196f3;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+        @media (max-width: 768px) {
             .login-container {
-                width: 100%;
+                grid-template-columns: 1fr;
+            }
+
+            .illustration {
+                display: block;
+            }
+
+            .login-form {
                 padding: 24px;
             }
         }
@@ -163,33 +174,45 @@
 </head>
 <body>
     <div class="login-container">
+        <div class="illustration">
+            <img src="Fabrication/LoginFab.jpg" alt="Login illustration">
+        </div>
         <div class="login-form">
-            <h1>Welcome back</h1>
-            <p class="subtitle">Enter your email and password to sign in</p>
-
+            <h1>Login</h1>
             <form>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Email" required>
+                    <label for="mobile">Mobile number</label>
+                    <input type="text" id="mobile" placeholder="Mobile number">
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Password" required>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Password">
+                        <button type="button" class="toggle-password">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
-                <div class="remember-me">
-                    <label class="toggle">
+                <div class="remember-forgot">
+                    <label class="remember-me">
                         <input type="checkbox">
-                        <span class="slider"></span>
+                        Remember me
                     </label>
-                    <span>Remember me</span>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
                 </div>
 
-                <button type="submit" class="sign-in-btn">SIGN IN</button>
+                <button type="submit" class="sign-in-button">Sign in</button>
+                                
+                <p class="signup">
+                    Don't have an account? <a href="#">Signup</a>
+                </p>
             </form>
         </div>
     </div>
-    <div class="background-container"></div>
 </body>
 </html>

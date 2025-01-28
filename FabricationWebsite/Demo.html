@@ -10,6 +10,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600&display=swap" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -555,6 +557,154 @@
         #nextImage {
             right: 10px;
         }
+
+        /*Footer*/
+
+        .footer {
+            background-color: #1a2942;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            color: #ffffff99;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+            .footer-section ul li {
+                margin-bottom: 10px;
+            }
+
+                .footer-section ul li a {
+                    color: #ffffff99;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                }
+
+                    .footer-section ul li a:hover {
+                        color: white;
+                    }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+            .newsletter-form input {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ffffff33;
+                background: transparent;
+                color: white;
+                border-radius: 4px;
+            }
+
+            .newsletter-form button {
+                padding: 10px 20px;
+                background-color: #e94444;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                .newsletter-form button:hover {
+                    background-color: #d63939;
+                }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+            .social-links a {
+                color: white;
+                text-decoration: none;
+                background-color: #ffffff1a;
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+
+                .social-links a:hover {
+                    background-color: #ffffff33;
+                }
+
+        .dropdown-toggle {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .footer-section {
+                border-bottom: 1px solid #ffffff1a;
+                padding-bottom: 20px;
+            }
+
+                .footer-section:last-child {
+                    border-bottom: none;
+                }
+
+            .dropdown-toggle {
+                display: block;
+                float: right;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            .footer-content {
+                display: none;
+            }
+
+            .footer-section.active .footer-content {
+                display: block;
+                margin-top: 20px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -608,367 +758,452 @@
         <img src="Fabrication/k1.jpg" alt="Charging Device">
     </section>-->
 
-        <div class="filter-buttons">
-            <button class="filter-btn active">Kitchen Trollies</button>
-            <button class="filter-btn">Main Doors</button>
-            <button class="filter-btn">Primium Door</button>
-            <button class="filter-btn">Fiber Products</button>
-        </div>
+    <div class="filter-buttons">
+        <button class="filter-btn active">Kitchen Trollies</button>
+        <button class="filter-btn">Main Doors</button>
+        <button class="filter-btn">Primium Door</button>
+        <button class="filter-btn">Fiber Products</button>
+    </div>
 
-        <div class="filter-bar">
-            <button class="filter-btnB">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cline x1='4' y1='21' x2='4' y2='14'/%3E%3Cline x1='4' y1='10' x2='4' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12' y2='3'/%3E%3Cline x1='20' y1='21' x2='20' y2='16'/%3E%3Cline x1='20' y1='12' x2='20' y2='3'/%3E%3Cline x1='1' y1='14' x2='7' y2='14'/%3E%3Cline x1='9' y1='8' x2='15' y2='8'/%3E%3Cline x1='17' y1='16' x2='23' y2='16'/%3E%3C/svg%3E" alt="Filter">
-                Filter and sort
-            </button>
-            <span>353 products</span>
-        </div>
+    <div class="filter-bar">
+        <button class="filter-btnB">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cline x1='4' y1='21' x2='4' y2='14'/%3E%3Cline x1='4' y1='10' x2='4' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12' y2='3'/%3E%3Cline x1='20' y1='21' x2='20' y2='16'/%3E%3Cline x1='20' y1='12' x2='20' y2='3'/%3E%3Cline x1='1' y1='14' x2='7' y2='14'/%3E%3Cline x1='9' y1='8' x2='15' y2='8'/%3E%3Cline x1='17' y1='16' x2='23' y2='16'/%3E%3C/svg%3E" alt="Filter">
+            Filter and sort
+        </button>
+        <span>353 products</span>
+    </div>
 
-        <div class="product-grid">
-            <a href="#" class="product-card">
-                <img src="Fabrication/k1.jpg" alt="img1" class="product-image">
-                <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
-                <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
-                <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Kitchen Trollies</h2>
-                    <div class="product-price">
-                        <span class="sale-price">₹749.00</span>
-                        <span class="original-price">₹1,999.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+    <div class="product-grid">
+        <a href="#" class="product-card">
+            <img src="Fabrication/k1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
+            <div class="product-info">
+                <h2 class="product-title">Kitchen Trollies</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
                 </div>
-            </a>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
 
-            <a href="#" class="product-card">
-                <img src="Fabrication/k2.jpg" alt="img1" class="product-image">
-                <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
-                <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
-                <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Door</h2>
-                    <div class="product-price">
-                        <span class="sale-price">₹749.00</span>
-                        <span class="original-price">₹1,999.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+        <a href="#" class="product-card">
+            <img src="Fabrication/k2.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
+            <div class="product-info">
+                <h2 class="product-title">Door</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
                 </div>
-            </a>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
 
-            <a href="#" class="product-card">
-                <img src="Fabrication/k3.jpg" alt="img1" class="product-image">
-                <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
-                <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
-                <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Main door</h2>
-                    <div class="product-price">
-                        <span class="sale-price">₹749.00</span>
-                        <span class="original-price">₹1,999.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+        <a href="#" class="product-card">
+            <img src="Fabrication/k3.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
+            <div class="product-info">
+                <h2 class="product-title">Main door</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
                 </div>
-            </a>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
 
-            <a href="#" class="product-card">
-                <img src="Fabrication/FiberProduct.jpg" alt="img1" class="product-image">
-                <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
-                <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
-                <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-title">Fiber Prodoct</h2>
-                    <div class="product-price">
-                        <span class="sale-price">₹749.00</span>
-                        <span class="original-price">₹1,999.00</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+        <a href="#" class="product-card">
+            <img src="Fabrication/FiberProduct.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
+            <div class="product-info">
+                <h2 class="product-title">Fiber Prodoct</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
                 </div>
-            </a>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>India's Best Online Fashion Store!</h3>
+                <div class="footer-content" style="display:block!important">
+                    <p>Bhose, Near Mahadev Mandir, Tal-Miraj, Dist- Sangali</p>
+                    <p class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        +91 8055651695 / 8180821173
+                    </p>
+                    <p class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        JAY@GMAIL.COM
+                    </p>
+                    <p class="contact-info">
+                        <i class="fas fa-clock"></i>
+                        Mon-Sun: 10am – 6pm
+                    </p>
+                </div>
             </div>
 
-
-
-            <div id="productModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div class="image-container">
-                        <button id="prevImage" class="nav-button">&lt;</button>
-                        <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
-                        <button id="nextImage" class="nav-button">&gt;</button>
-                    </div>
-                    <h2 id="modalTitle"></h2>
-                    <div id="modalPrice"></div>
-                    <button id="modalAddToCart" class="add-to-cart">Add to Cart</button>
+            <div class="footer-section">
+                <h3>
+                    MENU
+                    <button class="dropdown-toggle">▼</button>
+                </h3>
+                <div class="footer-content">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Category</a></li>
+                        <li><a href="#">Developed by @Suyash Patil</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    const menuBtn = document.querySelector('.menu-btn');
-                    const closeBtn = document.querySelector('.menu-close');
-                    const mobileMenu = document.querySelector('.mobile-menu');
-                    const overlay = document.querySelector('.overlay');
-                    const modal = document.getElementById('productModal');
-                    const modalClose = modal.querySelector('.close');
-                    const modalImage = document.getElementById('modalImage');
-                    const modalTitle = document.getElementById('modalTitle');
-                    const modalPrice = document.getElementById('modalPrice');
-                    const modalAddToCart = document.getElementById('modalAddToCart');
-                    const cartIcon = document.getElementById('cartIcon');
-                    const prevImageBtn = document.getElementById('prevImage');
-                    const nextImageBtn = document.getElementById('nextImage');
+            <div class="footer-section">
+                <h3>
+                    ABOUT US
+                    <button class="dropdown-toggle"></button>
+                </h3>
+                <div class="footer-content">
+                    <ul>
+                        <li><a href="#">My Profile</a></li>
+                        <li><a href="#">My Orders</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">My Wishlist</a></li>
+                        <li><a href="#">Compare</a></li>
+                    </ul>
+                </div>
+            </div>
 
-                    // Menu functionality
-                    menuBtn.addEventListener('click', () => {
-                        mobileMenu.classList.add('active');
-                        overlay.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    });
+            <div class="footer-section">
+                <h3>
+                    NEWSLETTER
+                </h3>
+                <div class="footer-content" style="display:block">
+                    <p>Subscribe to our mailing list to get the new updates!</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-                    function closeMenu() {
-                        mobileMenu.classList.remove('active');
-                        overlay.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
+    <script>
+        document.querySelectorAll('.dropdown-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const section = button.closest('.footer-section');
+                section.classList.toggle('active');
+                button.innerHTML = section.classList.contains('active') ? '▲' : '▼';
+            });
+        });
+    </script>
 
-                    closeBtn.addEventListener('click', closeMenu);
-                    overlay.addEventListener('click', closeMenu);
 
-                    // Touch events for mobile menu
-                    let touchStartX = 0;
-                    mobileMenu.addEventListener('touchstart', e => {
-                        touchStartX = e.touches[0].clientX;
-                    });
 
-                    mobileMenu.addEventListener('touchmove', e => {
-                        const touchX = e.touches[0].clientX;
-                        const diff = touchStartX - touchX;
 
-                        if (diff > 50) {
-                            closeMenu();
-                        }
-                    });
 
-                    // Responsive menu
-                    window.addEventListener('resize', () => {
-                        if (window.innerWidth > 768) {
-                            closeMenu();
-                        }
-                    });
 
-                    // Modal functionality with image slider
-                    let currentImages = [];
-                    let currentImageIndex = 0;
 
-                    function openModal(images, title, salePrice, originalPrice) {
-                        currentImages = images;
-                        currentImageIndex = 0;
-                        updateModalImage();
-                        modalTitle.textContent = title;
-                        modalPrice.innerHTML = `
-                                <span class="sale-price">${salePrice}</span>
-                                <span class="original-price">${originalPrice}</span>
-                            `;
-                        modal.style.display = 'block';
-                        document.body.style.overflow = 'hidden';
-                    }
 
-                    function closeModal() {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = '';
-                    }
 
-                    function updateModalImage() {
-                        modalImage.src = currentImages[currentImageIndex];
-                        modalImage.alt = `Product Image ${currentImageIndex + 1}`;
-                    }
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="image-container">
+                <button id="prevImage" class="nav-button">&lt;</button>
+                <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
+                <button id="nextImage" class="nav-button">&gt;</button>
+            </div>
+            <h2 id="modalTitle"></h2>
+            <div id="modalPrice"></div>
+            <button id="modalAddToCart" class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
 
-                    function showPreviousImage() {
-                        currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
-                        updateModalImage();
-                    }
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.querySelector('.menu-btn');
+            const closeBtn = document.querySelector('.menu-close');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.overlay');
+            const modal = document.getElementById('productModal');
+            const modalClose = modal.querySelector('.close');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalPrice = document.getElementById('modalPrice');
+            const modalAddToCart = document.getElementById('modalAddToCart');
+            const cartIcon = document.getElementById('cartIcon');
+            const prevImageBtn = document.getElementById('prevImage');
+            const nextImageBtn = document.getElementById('nextImage');
 
-                    function showNextImage() {
-                        currentImageIndex = (currentImageIndex + 1) % currentImages.length;
-                        updateModalImage();
-                    }
+            // Menu functionality
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
 
-                    modalClose.addEventListener('click', closeModal);
-                    window.addEventListener('click', (event) => {
-                        if (event.target === modal) {
-                            closeModal();
-                        }
-                    });
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
 
-                    prevImageBtn.addEventListener('click', showPreviousImage);
-                    nextImageBtn.addEventListener('click', showNextImage);
+            closeBtn.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
 
-                    // Image slider functionality
-                    modalImage.addEventListener('mousemove', (e) => {
-                        const rect = modalImage.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const width = rect.width;
-                        const percentage = x / width;
-                        currentImageIndex = Math.floor(percentage * currentImages.length);
-                        updateModalImage();
-                    });
+            // Touch events for mobile menu
+            let touchStartX = 0;
+            mobileMenu.addEventListener('touchstart', e => {
+                touchStartX = e.touches[0].clientX;
+            });
 
-                    modalImage.addEventListener('mouseleave', () => {
-                        currentImageIndex = 0;
-                        updateModalImage();
-                    });
+            mobileMenu.addEventListener('touchmove', e => {
+                const touchX = e.touches[0].clientX;
+                const diff = touchStartX - touchX;
 
-                    // Add click event listeners to product cards
-                    const productCards = document.querySelectorAll('.product-card');
-                    productCards.forEach(card => {
-                        card.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const images = Array.from(card.querySelectorAll('.product-image')).map(img => img.src);
-                            const title = card.querySelector('.product-title').textContent;
-                            const salePrice = card.querySelector('.sale-price').textContent;
-                            const originalPrice = card.querySelector('.original-price').textContent;
-                            openModal(images, title, salePrice, originalPrice);
-                        });
-                    });
+                if (diff > 50) {
+                    closeMenu();
+                }
+            });
 
-                    // Add to Cart functionality (unchanged)
-                    modalAddToCart.addEventListener('click', () => {
-                        const product = {
-                            image: modalImage.src,
-                            title: modalTitle.textContent,
-                            price: modalPrice.querySelector('.sale-price').textContent,
-                            originalPrice: modalPrice.querySelector('.original-price').textContent,
-                            quantity: 1
-                        };
+            // Responsive menu
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    closeMenu();
+                }
+            });
 
-                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                        const existingProductIndex = cart.findIndex(item => item.title === product.title);
+            // Modal functionality with image slider
+            let currentImages = [];
+            let currentImageIndex = 0;
 
-                        if (existingProductIndex !== -1) {
-                            cart[existingProductIndex].quantity += 1;
-                        } else {
-                            cart.push(product);
-                        }
+            function openModal(images, title, salePrice, originalPrice) {
+                currentImages = images;
+                currentImageIndex = 0;
+                updateModalImage();
+                modalTitle.textContent = title;
+                modalPrice.innerHTML = `
+                                            <span class="sale-price">${salePrice}</span>
+                                            <span class="original-price">${originalPrice}</span>
+                                        `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
 
-                        localStorage.setItem('cart', JSON.stringify(cart));
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
 
-                        updateCartIcon();
-                        closeModal();
-                        alert('Product added to cart successfully!');
-                       
-                    });
+            function updateModalImage() {
+                modalImage.src = currentImages[currentImageIndex];
+                modalImage.alt = `Product Image ${currentImageIndex + 1}`;
+            }
 
-                    // Cart icon click event
-                    cartIcon.addEventListener('click', () => {
-                        window.location.href = 'V0Cart.html';
-                    });
+            function showPreviousImage() {
+                currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                updateModalImage();
+            }
 
-                    // Update cart icon
-                    function updateCartIcon() {
-                        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-                        cartIcon.setAttribute('data-count', cartCount);
-                        cartIcon.classList.toggle('has-items', cartCount > 0);
-                    }
+            function showNextImage() {
+                currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+                updateModalImage();
+            }
 
-                    // Initialize cart icon
-                    updateCartIcon();
+            modalClose.addEventListener('click', closeModal);
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            prevImageBtn.addEventListener('click', showPreviousImage);
+            nextImageBtn.addEventListener('click', showNextImage);
+
+            // Image slider functionality
+            modalImage.addEventListener('mousemove', (e) => {
+                const rect = modalImage.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const width = rect.width;
+                const percentage = x / width;
+                currentImageIndex = Math.floor(percentage * currentImages.length);
+                updateModalImage();
+            });
+
+            modalImage.addEventListener('mouseleave', () => {
+                currentImageIndex = 0;
+                updateModalImage();
+            });
+
+            // Add click event listeners to product cards
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const images = Array.from(card.querySelectorAll('.product-image')).map(img => img.src);
+                    const title = card.querySelector('.product-title').textContent;
+                    const salePrice = card.querySelector('.sale-price').textContent;
+                    const originalPrice = card.querySelector('.original-price').textContent;
+                    openModal(images, title, salePrice, originalPrice);
                 });
-            </script>
+            });
 
+            // Add to Cart functionality (unchanged)
+            modalAddToCart.addEventListener('click', () => {
+                const product = {
+                    image: modalImage.src,
+                    title: modalTitle.textContent,
+                    price: modalPrice.querySelector('.sale-price').textContent,
+                    originalPrice: modalPrice.querySelector('.original-price').textContent,
+                    quantity: 1
+                };
 
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProductIndex = cart.findIndex(item => item.title === product.title);
 
-            <script>
-                const menuBtn = document.querySelector('.menu-btn');
-                const closeBtn = document.querySelector('.menu-close');
-                const mobileMenu = document.querySelector('.mobile-menu');
-                const overlay = document.querySelector('.overlay');
-
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.add('active');
-                    overlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-
-                function closeMenu() {
-                    mobileMenu.classList.remove('active');
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = '';
+                if (existingProductIndex !== -1) {
+                    cart[existingProductIndex].quantity += 1;
+                } else {
+                    cart.push(product);
                 }
 
-                closeBtn.addEventListener('click', closeMenu);
-                overlay.addEventListener('click', closeMenu);
+                localStorage.setItem('cart', JSON.stringify(cart));
 
-                let touchStartX = 0;
-                mobileMenu.addEventListener('touchstart', e => {
-                    touchStartX = e.touches[0].clientX;
-                });
+                updateCartIcon();
+                closeModal();
+                alert('Product added to cart successfully!');
 
-                mobileMenu.addEventListener('touchmove', e => {
-                    const touchX = e.touches[0].clientX;
-                    const diff = touchStartX - touchX;
+            });
 
-                    if (diff > 50) {
-                        closeMenu();
-                    }
-                });
+            // Cart icon click event
+            cartIcon.addEventListener('click', () => {
+                window.location.href = 'V0Cart.html';
+            });
 
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth > 768) {
-                        closeMenu();
-                    }
-                });
+            // Update cart icon
+            function updateCartIcon() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+                cartIcon.setAttribute('data-count', cartCount);
+                cartIcon.classList.toggle('has-items', cartCount > 0);
+            }
 
-            </script>
-
-     <script>
-         // Wait for the DOM to be fully loaded before executing the script
-         document.addEventListener("DOMContentLoaded", () => {
-             // Select the necessary elements
-             const filterBtnB = document.querySelector(".filter-btnB")
-             const filterButtons = document.querySelector(".filter-buttons")
-             const filterBtns = document.querySelectorAll(".filter-btn")
-
-             // Initially hide the filter buttons
-             filterButtons.style.display = "none"
-
-             // Toggle filter buttons visibility when filter-btnB is clicked
-             filterBtnB.addEventListener("click", () => {
-                 if (filterButtons.style.display === "none") {
-                     filterButtons.style.display = "flex"
-                 } else {
-                     filterButtons.style.display = "none"
-                 }
-             })
-
-             // Add click event listeners to each filter button
-             filterBtns.forEach((btn) => {
-                 btn.addEventListener("click", function () {
-                     // Remove 'active' class from all buttons
-                     filterBtns.forEach((b) => b.classList.remove("active"))
-                     // Add 'active' class to the clicked button
-                     this.classList.add("active")
-
-                     // Here you can add logic to filter products based on the selected category
-                     const category = this.textContent
-                     console.log(`Filtering products for category: ${category}`)
-                     // Implement your filtering logic here
-                 })
-             })
-
-             // Function to update product count (example implementation)
-             function updateProductCount(count) {
-                 const productCountSpan = document.querySelector(".filter-bar span")
-                 if (productCountSpan) {
-                     productCountSpan.textContent = `${count} products`
-                 }
-             }
-
-             // Example usage: Update product count (you would call this after filtering)
-             // updateProductCount(42);
-         })
+            // Initialize cart icon
+            updateCartIcon();
+        });
+    </script>
 
 
-     </script>
+
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const closeBtn = document.querySelector('.menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const overlay = document.querySelector('.overlay');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+
+        let touchStartX = 0;
+        mobileMenu.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        mobileMenu.addEventListener('touchmove', e => {
+            const touchX = e.touches[0].clientX;
+            const diff = touchStartX - touchX;
+
+            if (diff > 50) {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+    </script>
+
+    <script>
+        // Wait for the DOM to be fully loaded before executing the script
+        document.addEventListener("DOMContentLoaded", () => {
+            // Select the necessary elements
+            const filterBtnB = document.querySelector(".filter-btnB")
+            const filterButtons = document.querySelector(".filter-buttons")
+            const filterBtns = document.querySelectorAll(".filter-btn")
+
+            // Initially hide the filter buttons
+            filterButtons.style.display = "none"
+
+            // Toggle filter buttons visibility when filter-btnB is clicked
+            filterBtnB.addEventListener("click", () => {
+                if (filterButtons.style.display === "none") {
+                    filterButtons.style.display = "flex"
+                } else {
+                    filterButtons.style.display = "none"
+                }
+            })
+
+            // Add click event listeners to each filter button
+            filterBtns.forEach((btn) => {
+                btn.addEventListener("click", function () {
+                    // Remove 'active' class from all buttons
+                    filterBtns.forEach((b) => b.classList.remove("active"))
+                    // Add 'active' class to the clicked button
+                    this.classList.add("active")
+
+                    // Here you can add logic to filter products based on the selected category
+                    const category = this.textContent
+                    console.log(`Filtering products for category: ${category}`)
+                    // Implement your filtering logic here
+                })
+            })
+
+            // Function to update product count (example implementation)
+            function updateProductCount(count) {
+                const productCountSpan = document.querySelector(".filter-bar span")
+                if (productCountSpan) {
+                    productCountSpan.textContent = `${count} products`
+                }
+            }
+
+            // Example usage: Update product count (you would call this after filtering)
+            // updateProductCount(42);
+        })
+    </script>
 
 </body>
 </html>
