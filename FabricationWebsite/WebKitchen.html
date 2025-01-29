@@ -865,9 +865,7 @@
             </div>
 
             <div class="footer-section">
-                <h3>
-                    <a href="WebAbout.html"></a>ABOUT US
-                </h3>              
+                <a style="text-decoration:none;" href="WebAbout.html"><h3>ABOUT US</h3></a>             
             </div>
 
             <div class="footer-section">
@@ -1022,21 +1020,6 @@
 
             prevImageBtn.addEventListener('click', showPreviousImage);
             nextImageBtn.addEventListener('click', showNextImage);
-
-            // Image slider functionality
-            modalImage.addEventListener('mousemove', (e) => {
-                const rect = modalImage.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const width = rect.width;
-                const percentage = x / width;
-                currentImageIndex = Math.floor(percentage * currentImages.length);
-                updateModalImage();
-            });
-
-            modalImage.addEventListener('mouseleave', () => {
-                currentImageIndex = 0;
-                updateModalImage();
-            });
 
             // Add click event listeners to product cards
             const productCards = document.querySelectorAll('.product-card');
