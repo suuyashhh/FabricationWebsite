@@ -460,7 +460,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1001;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
@@ -470,85 +470,54 @@
         }
 
         .modal-content {
-            position: relative;
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
             max-width: 600px;
-            border-radius: 10px;
+            position: relative;
         }
 
         .close {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 30px;
-            height: 30px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 20px;
-            z-index: 1000;
         }
 
-            .close:hover {
-                background: #f0f0f0;
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
             }
-
-        .modal-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        #modalTitle {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        #modalPrice {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        #modalAddToCart {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-        }
 
         .image-container {
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .nav-button {
             position: absolute;
-            top: 50%;
+            top: 90%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0,0,0,0.5);
             color: white;
             border: none;
-            padding: 10px 15px;
-            font-size: 18px;
+            padding: 10px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 18px;
         }
-
-            .nav-button:hover {
-                background-color: rgba(0, 0, 0, 0.8);
-            }
 
         #prevImage {
             left: 10px;
@@ -557,6 +526,25 @@
         #nextImage {
             right: 10px;
         }
+
+        .image-controls {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+            .dot.active {
+                background-color: #717171;
+            }
 
         /*Footer*/
 
@@ -705,6 +693,48 @@
                 flex-direction: column;
             }
         }
+
+     /*for search */
+        search-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+            .search-input:focus {
+                border-color: #006B5E;
+            }
+
+        .search-close {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #666;
+            cursor: pointer;
+        }
+
+            .search-close:hover {
+                color: #333;
+            }
     </style>
 </head>
 <body>
@@ -727,6 +757,10 @@
             </div>
         </div>
     </header>
+    <div class="search-container" style="display: none;">
+        <input type="text" class="search-input" placeholder="Search products...">
+        <button class="search-close">×</button>
+    </div>
 
     <div class="mobile-menu">
         <button class="menu-close">×</button>
@@ -865,7 +899,7 @@
             </div>
 
             <div class="footer-section">
-                <a style="text-decoration:none;" href="WebAbout.html"><h3>ABOUT US</h3></a>             
+                <a style="text-decoration:none;" href="WebAbout.html"><h3>ABOUT US</h3></a>
             </div>
 
             <div class="footer-section">
@@ -900,18 +934,16 @@
 
 
 
-
-
-
-
-
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="image-container">
-                <button id="prevImage" class="nav-button">&lt;</button>
+                <button id="prevImage" class="nav-button">←</button>
                 <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
-                <button id="nextImage" class="nav-button">&gt;</button>
+                <button id="nextImage" class="nav-button">→</button>
+            </div>
+            <div class="image-controls">
+                <!-- Dots will be dynamically added here -->
             </div>
             <h2 id="modalTitle"></h2>
             <div id="modalPrice"></div>
@@ -934,6 +966,7 @@
             const cartIcon = document.getElementById('cartIcon');
             const prevImageBtn = document.getElementById('prevImage');
             const nextImageBtn = document.getElementById('nextImage');
+            const imageControls = modal.querySelector('.image-controls');
             const Login = document.getElementById('Login');
 
             // Menu functionality
@@ -984,11 +1017,12 @@
                 updateModalImage();
                 modalTitle.textContent = title;
                 modalPrice.innerHTML = `
-                                            <span class="sale-price">${salePrice}</span>
-                                            <span class="original-price">${originalPrice}</span>
-                                        `;
+                        <span class="sale-price">${salePrice}</span>
+                        <span class="original-price">${originalPrice}</span>
+                    `;
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
+                updateDots();
             }
 
             function closeModal() {
@@ -999,6 +1033,7 @@
             function updateModalImage() {
                 modalImage.src = currentImages[currentImageIndex];
                 modalImage.alt = `Product Image ${currentImageIndex + 1}`;
+                updateDots();
             }
 
             function showPreviousImage() {
@@ -1011,6 +1046,22 @@
                 updateModalImage();
             }
 
+            function updateDots() {
+                imageControls.innerHTML = '';
+                currentImages.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    if (index === currentImageIndex) {
+                        dot.classList.add('active');
+                    }
+                    dot.addEventListener('click', () => {
+                        currentImageIndex = index;
+                        updateModalImage();
+                    });
+                    imageControls.appendChild(dot);
+                });
+            }
+
             modalClose.addEventListener('click', closeModal);
             window.addEventListener('click', (event) => {
                 if (event.target === modal) {
@@ -1020,6 +1071,17 @@
 
             prevImageBtn.addEventListener('click', showPreviousImage);
             nextImageBtn.addEventListener('click', showNextImage);
+
+            // Keyboard arrow keys support
+            document.addEventListener('keydown', (e) => {
+                if (modal.style.display === 'block') {
+                    if (e.key === 'ArrowLeft') {
+                        showPreviousImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    }
+                }
+            });
 
             // Add click event listeners to product cards
             const productCards = document.querySelectorAll('.product-card');
@@ -1175,6 +1237,49 @@
             // Example usage: Update product count (you would call this after filtering)
             // updateProductCount(42);
         })
+    </script>
+
+    <script>
+        // Search functionality
+        const searchIcon = document.querySelector('.header-icons img[alt="Search"]');
+        const searchContainer = document.querySelector('.search-container');
+        const searchInput = document.querySelector('.search-input');
+        const searchClose = document.querySelector('.search-close');
+        const productCards = document.querySelectorAll('.product-card');
+
+        searchIcon.addEventListener('click', () => {
+            searchContainer.style.display = 'block';
+            searchInput.focus();
+        });
+
+        searchClose.addEventListener('click', () => {
+            searchContainer.style.display = 'none';
+            searchInput.value = '';
+            // Show all products when search is closed
+            productCards.forEach(card => card.style.display = 'flex');
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+
+            productCards.forEach(card => {
+                const title = card.querySelector('.product-title').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Close search on click outside
+        //document.addEventListener('click', (e) => {
+        //    if (!searchContainer.contains(e.target) && e.target !== searchIcon) {
+        //        searchContainer.style.display = 'none';
+        //        searchInput.value = '';
+        //        productCards.forEach(card => card.style.display = 'flex');
+        //    }
+        //});
     </script>
 
 </body>
