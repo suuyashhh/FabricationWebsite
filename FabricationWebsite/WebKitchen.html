@@ -735,6 +735,46 @@
             .search-close:hover {
                 color: #333;
             }
+
+        /* Full size image*/
+
+        /* New styles for full-size image view */
+        .fullsize-image-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .fullsize-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .close-fullsize {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+            .close-fullsize:hover,
+            .close-fullsize:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
     </style>
 </head>
 <body>
@@ -757,7 +797,7 @@
             </div>
         </div>
     </header>
-    <div class="search-container" style="display: none;">
+    <div class="search-container" style="display: none;margin:20px">
         <input type="text" class="search-input" placeholder="Search products...">
         <button class="search-close">×</button>
     </div>
@@ -802,12 +842,12 @@
 
     <div class="product-grid">
         <a href="#" class="product-card">
-            <img src="Fabrication/k1.jpg" alt="img1" class="product-image">
-            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
-            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
-            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley White 1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/Kitchen Trolley White 2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley White 3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley White 4.jpg" alt="img1" style="display:none" class="product-image">
             <div class="product-info">
-                <h2 class="product-title">Kitchen Trollies</h2>
+                <h2 class="product-title">Kitchen Trollies White</h2>
                 <div class="product-price">
                     <span class="sale-price">₹749.00</span>
                     <span class="original-price">₹1,999.00</span>
@@ -817,12 +857,12 @@
         </a>
 
         <a href="#" class="product-card">
-            <img src="Fabrication/k2.jpg" alt="img1" class="product-image">
-            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
-            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
-            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Wire Basket 1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Wire Basket 2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Wire Basket 3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Wire Basket 4.jpg" alt="img1" style="display:none" class="product-image">
             <div class="product-info">
-                <h2 class="product-title">Door</h2>
+                <h2 class="product-title">Wire Basket</h2>
                 <div class="product-price">
                     <span class="sale-price">₹749.00</span>
                     <span class="original-price">₹1,999.00</span>
@@ -832,12 +872,12 @@
         </a>
 
         <a href="#" class="product-card">
-            <img src="Fabrication/k3.jpg" alt="img1" class="product-image">
-            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
-            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
-            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Olive Green 1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Olive Green 2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Olive Green 3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Olive Green 4.jpg" alt="img1" style="display:none" class="product-image">
             <div class="product-info">
-                <h2 class="product-title">Main door</h2>
+                <h2 class="product-title">Olive Green</h2>
                 <div class="product-price">
                     <span class="sale-price">₹749.00</span>
                     <span class="original-price">₹1,999.00</span>
@@ -847,12 +887,10 @@
         </a>
 
         <a href="#" class="product-card">
-            <img src="Fabrication/FiberProduct.jpg" alt="img1" class="product-image">
-            <img src="Fabrication/k1.jpg" alt="img1" style="display:none" class="product-image">
-            <img src="Fabrication/k3.jpg" alt="img1" style="display:none" class="product-image">
-            <img src="Fabrication/k2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Tandem Drawers and soft close 1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Tandem Drawers and soft close 2.jpg" alt="img1" style="display:none" class="product-image">
             <div class="product-info">
-                <h2 class="product-title">Fiber Prodoct</h2>
+                <h2 class="product-title">Tandem Drawers and Soft Close</h2>
                 <div class="product-price">
                     <span class="sale-price">₹749.00</span>
                     <span class="original-price">₹1,999.00</span>
@@ -860,6 +898,91 @@
                 <button class="add-to-cart">Add to Cart</button>
             </div>
         </a>
+
+        <a href="#" class="product-card">
+            <img src="Fabrication/Kitchen Trolley Sunmica Panel.jpg" alt="img1" class="product-image">
+            <div class="product-info">
+                <h2 class="product-title">Sunmica Panel</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
+        <a href="#" class="product-card">
+            <img src="Fabrication/Kitchen Trolley Olive Green 1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Olive Green 2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Olive Green 3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Olive Green 4.jpg" alt="img1" style="display:none" class="product-image">
+            <div class="product-info">
+                <h2 class="product-title">Olive Green</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
+
+        <a href="#" class="product-card">
+            <img src="Fabrication/Kitchen Trolley Gray 1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Gray 2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Gray 3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Gray 4.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Gray 5.jpg" alt="img1" style="display:none" class="product-image">
+            <div class="product-info">
+                <h2 class="product-title">Kitchen Trolley Gray</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
+
+        <a href="#" class="product-card">
+            <img src="Fabrication/Kitchen Trolley Expoxy Panel 1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Expoxy Panel 2.jpg" alt="img1" style="display:none" class="product-image">
+           <div class="product-info">
+                <h2 class="product-title">Expoxy Panel</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
+
+        <a href="#" class="product-card">
+            <img src="Fabrication/Kitchen Trolley Black N White.jpg" alt="img1" class="product-image">
+             <div class="product-info">
+                <h2 class="product-title">Black And White</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
+
+        <a href="#" class="product-card">
+            <img src="Fabrication/Kitchen Trolley Acrylic Panel 1.jpg" alt="img1" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Acrylic Panel 2.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Acrylic Panel 3.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Acrylic Panel 4.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Acrylic Panel 5.jpg" alt="img1" style="display:none" class="product-image">
+            <img src="Fabrication/Kitchen Trolley Acrylic Panel 6.jpg" alt="img1" style="display:none" class="product-image">
+            <div class="product-info">
+                <h2 class="product-title">Acrylic Panel</h2>
+                <div class="product-price">
+                    <span class="sale-price">₹749.00</span>
+                    <span class="original-price">₹1,999.00</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </a>
+
     </div>
 
     <footer class="footer">
@@ -939,7 +1062,7 @@
             <span class="close">&times;</span>
             <div class="image-container">
                 <button id="prevImage" class="nav-button">←</button>
-                <img id="modalImage" src="/placeholder.svg" alt="" class="modal-image">
+                <a href="#" id="fullsizeLink"><img id="modalImage" src="/placeholder.svg" alt="" class="modal-image"></a>
                 <button id="nextImage" class="nav-button">→</button>
             </div>
             <div class="image-controls">
@@ -949,6 +1072,12 @@
             <div id="modalPrice"></div>
             <button id="modalAddToCart" class="add-to-cart">Add to Cart</button>
         </div>
+    </div>
+
+    <!-- New fullsize image container -->
+    <div id="fullsizeImageContainer" class="fullsize-image-container">
+        <span class="close-fullsize">&times;</span>
+        <img id="fullsizeImage" class="fullsize-image" src="/placeholder.svg" alt="Full-size product image">
     </div>
 
     <script>
@@ -1017,9 +1146,9 @@
                 updateModalImage();
                 modalTitle.textContent = title;
                 modalPrice.innerHTML = `
-                        <span class="sale-price">${salePrice}</span>
-                        <span class="original-price">${originalPrice}</span>
-                    `;
+                            <span class="sale-price">${salePrice}</span>
+                            <span class="original-price">${originalPrice}</span>
+                        `;
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
                 updateDots();
@@ -1143,6 +1272,40 @@
 
             // Initialize cart icon
             updateCartIcon();
+
+
+            const fullsizeLink = document.getElementById('fullsizeLink');
+            const fullsizeImageContainer = document.getElementById('fullsizeImageContainer');
+            const fullsizeImage = document.getElementById('fullsizeImage');
+            const closeFullsize = document.querySelector('.close-fullsize');
+
+            fullsizeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                fullsizeImage.src = modalImage.src;
+                fullsizeImageContainer.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeFullsize.addEventListener('click', () => {
+                fullsizeImageContainer.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+
+            fullsizeImageContainer.addEventListener('click', (e) => {
+                if (e.target === fullsizeImageContainer) {
+                    fullsizeImageContainer.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Modify the updateModalImage function
+            function updateModalImage() {
+                modalImage.src = currentImages[currentImageIndex];
+                modalImage.alt = `Product Image ${currentImageIndex + 1}`;
+                fullsizeLink.href = currentImages[currentImageIndex];
+                updateDots();
+            }
+
         });
     </script>
 
@@ -1248,8 +1411,12 @@
         const productCards = document.querySelectorAll('.product-card');
 
         searchIcon.addEventListener('click', () => {
-            searchContainer.style.display = 'block';
-            searchInput.focus();
+            if (searchContainer.style.display === 'block') {
+                searchContainer.style.display = 'none'; // Hide the search bar if it's already shown
+            } else {
+                searchContainer.style.display = 'block'; // Show the search bar if it's hidden
+                searchInput.focus(); // Focus on the input field when showing
+            }
         });
 
         searchClose.addEventListener('click', () => {
